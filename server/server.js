@@ -3,14 +3,20 @@ const app = express()
 const PORT = 5050
 const dotenv = require("dotenv")
 const run  = require("./database")
+const {router}  = require("./routes/URL.routes")
 dotenv.config()
+const cors = require("cors")
+app.use(cors())
 
-
+app.use(express.json())
+console.log(router)
 
 
 app.get('/' , (req , res) => {
     res.send("hi there from server")
 }) 
+
+app.use('/url' , router)
 
 
 app.listen(PORT , () => {

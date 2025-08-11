@@ -1,23 +1,27 @@
-
 const mongoose = require("mongoose")
-var validator = require('validator');
+
 const urlSchema = new mongoose.Schema({
-    longUrl : {
+     redirectUrl : {
         type : String,
-        validate : {
-            validate : validator.isURL()
-        },
         required : true 
-    },
-    shortUrl : {
-        type : String , 
-        required : true , 
-        unique : true
     },
     shortId : {
         type : String , 
-        required : true 
-    }
+        required : true ,
+        unique : true
+    },
+    visitHistory : [
+        {
+            timeStamp : {
+                type : Number
+            }
+        }
+    ]
 })
 
 
+const URL = mongoose.model('URLMODEL' , urlSchema)
+
+module.exports = {
+    URL
+}

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { LuSun, LuMoon } from "react-icons/lu";
 
-console.log(LuSun, LuMoon);
+import { LuSun } from "react-icons/lu";
+import { LuMoon } from "react-icons/lu";
+
+
+// console.log(LuSun, LuMoon);
 
 import { Link } from 'react-router-dom';
 

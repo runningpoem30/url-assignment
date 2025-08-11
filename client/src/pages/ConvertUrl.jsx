@@ -1,8 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
-import baseUrl from '../../baseurl';
 import Header from './Header';
 import { Navigate, useNavigate } from 'react-router-dom';
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
+// Example API call
+fetch(`${baseUrl}/api/short-url`)
+  .then(res => res.json())
+  .then(data => console.log(data));
+
 
 import { Link } from 'react-router-dom';
 

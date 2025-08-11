@@ -1,10 +1,15 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import baseUrl
- from '../../baseurl'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Header from './Header'
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
+// Example API call
+fetch(`${baseUrl}/api/short-url`)
+  .then(res => res.json())
+  .then(data => console.log(data));
+
 
 function ShortUrl() {
     const [data , setData] = useState()
@@ -42,9 +47,9 @@ function ShortUrl() {
        </div>
        <div className='flex border border-2 border-gray-700 w-[400px] py-[20px] ml-[650px] pl-[20px]'>
                  <h1 className='font-mono'>
-  <a href={`${baseUrl}url/${params?.url}`} target="_blank" rel="noopener noreferrer">
-    {`${baseUrl}url/${params?.url}`}
-  </a>
+         <a href={`${baseUrl}url/${params?.url}`} target="_blank" rel="noopener noreferrer">
+          {`${baseUrl}url/${params?.url}`}
+         </a>
 </h1>
        </div>
     

@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-const PORT = 5050
+const PORT = 5050 || process.env.PORT
 const dotenv = require("dotenv")
 const run  = require("./database")
 const {router}  = require("./routes/URL.routes")

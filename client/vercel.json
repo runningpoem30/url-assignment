@@ -1,15 +1,4 @@
 {
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    },
-    "cmd": "npm run build",
-    "dir": "."
-  },
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
+  "buildCommand": "vite build",
+  "outputDirectory": "dist"
 }

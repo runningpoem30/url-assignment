@@ -14,6 +14,7 @@ function App() {
       <Route path='/home' element={<Landing/>} />
       <Route path='/convert-url' element={<ConvertUrl/>}/>
       <Route path='/short-url/:url' element={<ShortUrl/>}/>
+      <Route path="*" element={<Landing />} />
      </Routes>
   )
 }

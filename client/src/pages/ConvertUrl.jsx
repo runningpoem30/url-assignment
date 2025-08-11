@@ -2,14 +2,21 @@ import React from 'react'
 import { useState } from 'react'
 import baseUrl from '../../baseurl';
 import Header from './Header';
+import { Navigate, useNavigate } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
 
 function ConvertUrl() {
-    const [url , setUrl] = useState();
+    const navigate = useNavigate()
+
     const [formData , setFormData] = useState({
         url:""
     })
     const [data , setData] = useState()
 
+    function navigateToShortLink(id){
+        navigate(`/short-url/${id}`)
+    }
  
     function handleChange(event){
         setFormData({
@@ -20,7 +27,6 @@ function ConvertUrl() {
 
     async function handleForm(event){
         event.preventDefault();     
-               setData(url)
        
         try{
 
@@ -32,33 +38,41 @@ function ConvertUrl() {
                 },
                 body : JSON.stringify(formData)
             })
-            console.log(data)
 
             const res = await data.json();
-            console.log(res)
             if(res){
-                setUrl("")
+                setData(res?.id)
+                navigateToShortLink(res?.id)
             }
+
+            setFormData({
+                url : ""
+            })
         }
         catch(err){
                 console.log(err)
         }
     }
+
     console.log(data)
+
 
     // console.log(url)
   return (
-    <div className='bg-white dark:bg-gray-900 text-black dark:text-white w-screen h-screen'>
+ <div className='bg-white dark:bg-gray-900 text-black dark:text-white w-screen h-screen'>
         <Header/>
         <div className='flex items-center justify-center mt-[250px]'>
         <form onSubmit={handleForm}>
        <input className=' border-2 font-mono w-[400px] border border-gray-700 h-[50px] rounded-lg dark:text-black' placeholder='enter your url' name='url' onChange={handleChange} value={formData.url}/>
        <br></br>
-       <button className='font-mono mt-[10px] bg-black text-white w-[100px] h-[40px] rounded-lg border-b-2'>submit</button>
+        <button className='font-mono mt-[10px] bg-black text-white w-[100px] h-[40px] rounded-lg border-b-2'>submit</button>
       </form>
+     
         </div>
       
     </div>
+
+
   )
 }
 
